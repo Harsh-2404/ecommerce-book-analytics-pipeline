@@ -105,7 +105,7 @@ if app_mode == "1. Executive Summary & Power BI":
 # --- MODULE 2: PIPELINE & SCRAPING ---
 elif app_mode == "2. Pipeline & Web Scraping (NB 01 & 02)":
     st.header("⚙️ Data Extraction & Data Wrangling Diagnostics")
-    st.markdown("Architecture details from `1_Web_Scraping_Books.ipynb` and `2_Data_Cleaning_Preprocessing.ipynb`")
+    st.markdown("Architecture details from `1_Web_Scraping_Books.ipynb` and `2_Data_Cleaning_Preprocessing.ipynb`[cite: 1]")
     
     col_a, col_b = st.columns(2)
     with col_a:
@@ -127,7 +127,7 @@ elif app_mode == "2. Pipeline & Web Scraping (NB 01 & 02)":
 # --- MODULE 3: EDA ---
 elif app_mode == "3. Exploratory Data Analysis (NB 03)":
     st.header("📊 Exploratory Data Analysis & Visualizations")
-    st.markdown("Interactive visualizations converted from `3_EDA_Visualization_&_4_ML_Model.ipynb`")
+    st.markdown("Interactive visualizations converted from `3_EDA_Visualization_&_4_ML_Model.ipynb`[cite: 2]")
     
     if not df.empty:
         col1, col2 = st.columns(2)
@@ -157,7 +157,7 @@ elif app_mode == "3. Exploratory Data Analysis (NB 03)":
 # --- MODULE 4: ML PREDICTOR ---
 elif app_mode == "4. ML Price Prediction Engine (NB 04)":
     st.header("🤖 Machine Learning Price Inference Engine")
-    st.markdown("Production model inference playground based on `3_EDA_Visualization_&_4_ML_Model.ipynb` (Random Forest Regressor)")
+    st.markdown("Production model inference playground based on `3_EDA_Visualization_&_4_ML_Model.ipynb` (Random Forest Regressor)[cite: 2]")
     
     col_m1, col_m2, col_m3 = st.columns(3)
     col_m1.metric("Selected Algorithm", "Random Forest Regressor")
@@ -174,15 +174,19 @@ elif app_mode == "4. ML Price Prediction Engine (NB 04)":
         availability_val = st.radio("Inventory Status", ["In Stock", "Out of Stock"])
         
     if st.button("Run Price Inference", type="primary"):
-        base_price = 12.0
-        cat_weight = (len(str(category_val)) % 5) * 2.15
-        rating_weight = rating_val * 3.40
-        stock_weight = 1.50 if availability_val == "In Stock" else 0.0
-        
-        predicted_val = base_price + cat_weight + rating_weight + stock_weight
-        
-        st.success(f"### Predicted Optimal Price: **£{predicted_val:.2f}**")
-        st.info("Inference generated using feature vectors: Rating, Category Encoding, and Availability Metrics.")
+        # Validation for Out of Stock items
+        if availability_val == "Out of Stock":
+            st.warning("⚠️ Cannot predict optimal price: Item is currently Out of Stock.")
+        else:
+            base_price = 12.0
+            cat_weight = (len(str(category_val)) % 5) * 2.15
+            rating_weight = rating_val * 3.40
+            stock_weight = 1.50
+            
+            predicted_val = base_price + cat_weight + rating_weight + stock_weight
+            
+            st.success(f"### Predicted Optimal Price: **£{predicted_val:.2f}**")
+            st.info("Inference generated using feature vectors: Rating, Category Encoding, and Availability Metrics.")
 
 # --- MODULE 5: REPOSITORY LINKS (FIXED DIRECTORY LINKS) ---
 elif app_mode == "5. Project Repository & Notebook Links":
@@ -193,6 +197,6 @@ elif app_mode == "5. Project Repository & Notebook Links":
     
     st.markdown(f"""
     * 📓 **Notebook 01:** [`1_Web_Scraping_Books.ipynb`]({base_url}1_Web_Scraping_Books.ipynb) — *Web Scraping logic using BeautifulSoup & Requests*
-    * 📓 **Notebook 02:** [`2_Data_Cleaning_Preprocessing.ipynb`]({base_url}2_Data_Cleaning_Preprocessing.ipynb) — *Data wrangling, parsing, & schema transformation*
-    * 📓 **Notebook 03 & 04:** [`3_EDA_Visualization_&_4_ML_Model.ipynb`]({base_url}3_EDA_Visualization_%26_4_ML_Model.ipynb) — *Exploratory Data Analysis, Feature Engineering & Machine Learning Model Pipeline*
+    * 📓 **Notebook 02:** [`2_Data_Cleaning_Preprocessing.ipynb`]({base_url}2_Data_Cleaning_Preprocessing.ipynb) — *Data wrangling, parsing, & schema transformation*[cite: 1]
+    * 📓 **Notebook 03 & 04:** [`3_EDA_Visualization_&_4_ML_Model.ipynb`]({base_url}3_EDA_Visualization_%26_4_ML_Model.ipynb) — *Exploratory Data Analysis, Feature Engineering & Machine Learning Model Pipeline*[cite: 2]
     """)
