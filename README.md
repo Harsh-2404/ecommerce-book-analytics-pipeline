@@ -1,5 +1,14 @@
 # 📚 E-Commerce Book Analytics Pipeline
 
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
+[![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-150458.svg)](https://pandas.pydata.org/)
+[![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-Machine%20Learning-F7931E.svg)](https://scikit-learn.org/)
+[![Power BI](https://img.shields.io/badge/Power_BI-Business_Intelligence-F2C811.svg)](https://powerbi.microsoft.com/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ecommerce-book-analytics-pipeline-harsh.streamlit.app/)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Harsh-2404/ecommerce-book-analytics-pipeline/blob/main/notebooks/)
+
 An end-to-end data engineering, analytics, and machine learning pipeline built on scraped e-commerce book catalog data. This repository features automated web scraping, data cleaning, exploratory data analysis (EDA), predictive pricing models, an interactive Power BI dashboard, and an executive project report.
 
 ---
